@@ -12,8 +12,13 @@ const cardPopup = document.querySelector(".popup_type_new-card");
 const addCardBtn = document.querySelector(".profile__add-button");
 const closeCardBtn = cardPopup.querySelector(".popup__close");
 const cardFormElement = cardPopup.querySelector(".popup__form");
+const cardName = cardFormElement.querySelector(".popup__input_type_card-name");
+const cardURL = cardFormElement.querySelector(".popup__input_type_url");
 
 const imagePopup = document.querySelector(".popup_type_image");
+const imagePopupImg = imagePopup.querySelector(".popup__image");
+const imagePopupCaption = imagePopup.querySelector(".popup__caption");
+const imagePopupClose = imagePopup.querySelector(".popup__close")
 
 const placesContainer = document.querySelector(".places__list");
 
@@ -44,11 +49,11 @@ function openAddCard() {
 
 //Модальное окно открытия карточки
 function openImgPopup(link, name) {
-    imagePopup.querySelector(".popup__image").src = link;
-    imagePopup.querySelector(".popup__image").alt = name;
-    imagePopup.querySelector(".popup__caption").textContent = name;
+    imagePopupImg.src = link;
+    imagePopupImg.alt = name;
+    imagePopupCaption.textContent = name;
     
-    imagePopup.querySelector(".popup__close").addEventListener('click', () => closeModal(imagePopup));
+    imagePopupClose.addEventListener('click', () => closeModal(imagePopup));
     
     openModal(imagePopup);
 }
@@ -70,8 +75,8 @@ function handleProfileFormSubmit(evt) {
 function handleCardFormSubmit(evt) {
     evt.preventDefault();
 
-    const newName = cardFormElement.querySelector(".popup__input_type_card-name").value;
-    const newLink = cardFormElement.querySelector(".popup__input_type_url").value;
+    const newName = cardName.value;
+    const newLink = cardURL.value;
 
     placesContainer.insertBefore(createCard(newName, newLink), placesContainer.firstChild)
 
